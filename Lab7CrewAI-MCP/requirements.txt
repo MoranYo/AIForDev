@@ -8,4 +8,3 @@ crewai
 python-dotenv
 crewai-tools[mcp]
 pandas
-langchain_experimental
