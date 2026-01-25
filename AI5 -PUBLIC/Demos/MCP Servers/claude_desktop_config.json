@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "WeatherServer": {
+      "command": "node",
+      "args": ["C:\\Users\\miche\\Desktop\\AI5 -PUBLIC\\Demos\\MCP\\Demo1_WeatherServiceMCP\\index.js"]
+    },
+    "NameOriginServer": {
+      "command": "python",
+      "args": ["C:\\Users\\miche\\Desktop\\AI5 -PUBLIC\\Demos\\MCP\\Demo2_NameOriginMCP\\main.py"]
+    }
+  }
+}

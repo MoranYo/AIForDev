@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mood Recipe App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'mood-happy': '#FFD700',
+                        'mood-sad': '#87CEEB',
+                        'mood-energetic': '#FF6347',
+                        'mood-calm': '#98FB98',
+                        'mood-adventurous': '#FF4500'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-purple-50 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <header class="text-center mb-12">
+            <h1 class="text-5xl font-bold text-gray-800 mb-4">🍽️ Mood Recipe</h1>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                Discover the perfect recipe that matches your current mood. 
+                Whether you're feeling happy, sad, energetic, calm, or adventurous, we've got something delicious for you!
+            </p>
+        </header>
+
+        <!-- Mood Selection -->
+        <div id="mood-selection" class="max-w-4xl mx-auto mb-12">
+            <h2 class="text-3xl font-semibold text-gray-800 text-center mb-8">How are you feeling today?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <button 
+                    class="mood-btn bg-yellow-400 hover:bg-yellow-500 transform hover:scale-105 transition-all duration-300 rounded-xl p-6 text-center shadow-lg"
+                    data-mood="happy"
+                >
+                    <div class="text-4xl mb-3">😊</div>
+                    <div class="text-xl font-semibold text-gray-800">Happy</div>
+                    <div class="text-sm text-gray-600 mt-2">Bright and cheerful recipes</div>
+                </button>
+                
+                <button 
+                    class="mood-btn bg-blue-300 hover:bg-blue-400 transform hover:scale-105 transition-all duration-300 rounded-xl p-6 text-center shadow-lg"
+                    data-mood="sad"
+                >
+                    <div class="text-4xl mb-3">😢</div>
+                    <div class="text-xl font-semibold text-gray-800">Sad</div>
+                    <div class="text-sm text-gray-600 mt-2">Comfort food to lift your spirits</div>
+                </button>
+                
+                <button 
+                    class="mood-btn bg-red-400 hover:bg-red-500 transform hover:scale-105 transition-all duration-300 rounded-xl p-6 text-center shadow-lg"
+                    data-mood="energetic"
+                >
+                    <div class="text-4xl mb-3">⚡</div>
+                    <div class="text-xl font-semibold text-gray-800">Energetic</div>
+                    <div class="text-sm text-gray-600 mt-2">Power-packed, nutritious meals</div>
+                </button>
+                
+                <button 
+                    class="mood-btn bg-green-300 hover:bg-green-400 transform hover:scale-105 transition-all duration-300 rounded-xl p-6 text-center shadow-lg"
+                    data-mood="calm"
+                >
+                    <div class="text-4xl mb-3">🧘</div>
+                    <div class="text-xl font-semibold text-gray-800">Calm</div>
+                    <div class="text-sm text-gray-600 mt-2">Soothing and peaceful dishes</div>
+                </button>
+                
+                <button 
+                    class="mood-btn bg-orange-400 hover:bg-orange-500 transform hover:scale-105 transition-all duration-300 rounded-xl p-6 text-center shadow-lg lg:col-span-1 md:col-span-2"
+                    data-mood="adventurous"
+                >
+                    <div class="text-4xl mb-3">🌟</div>
+                    <div class="text-xl font-semibold text-gray-800">Adventurous</div>
+                    <div class="text-sm text-gray-600 mt-2">Exotic and bold flavors</div>
+                </button>
+            </div>
+        </div>
+
+        <!-- Loading State -->
+        <div id="loading" class="hidden text-center py-12">
+            <div class="animate-spin rounded-full h-16 w-16 border-b-2 border-purple-600 mx-auto mb-4"></div>
+            <p class="text-lg text-gray-600">Finding the perfect recipe for your mood...</p>
+        </div>
+
+        <!-- Recipe Display -->
+        <div id="recipe-container" class="hidden max-w-4xl mx-auto">
+            <div class="bg-white rounded-2xl shadow-2xl overflow-hidden">
+                <!-- Recipe Header -->
+                <div id="recipe-header" class="bg-gradient-to-r from-purple-500 to-blue-500 text-white p-8">
+                    <h2 id="recipe-name" class="text-3xl font-bold mb-2"></h2>
+                    <p id="recipe-description" class="text-lg opacity-90"></p>
+                    <div class="flex items-center mt-4">
+                        <span id="recipe-mood" class="bg-white bg-opacity-20 px-3 py-1 rounded-full text-sm font-medium mr-4"></span>
+                        <span id="recipe-time" class="flex items-center text-sm">
+                            <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Recipe Content -->
+                <div class="p-8">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <!-- Ingredients -->
+                        <div>
+                            <h3 class="text-2xl font-semibold text-gray-800 mb-4 flex items-center">
+                                <svg class="w-6 h-6 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                                </svg>
+                                Ingredients
+                            </h3>
+                            <ul id="recipe-ingredients" class="space-y-2"></ul>
+                        </div>
+
+                        <!-- Instructions -->
+                        <div>
+                            <h3 class="text-2xl font-semibold text-gray-800 mb-4 flex items-center">
+                                <svg class="w-6 h-6 mr-2 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                </svg>
+                                Instructions
+                            </h3>
+                            <ol id="recipe-instructions" class="space-y-3"></ol>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="mt-8 pt-8 border-t border-gray-200 flex flex-col sm:flex-row gap-4">
+                        <button 
+                            id="new-recipe-btn" 
+                            class="flex-1 bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+                        >
+                            🎲 Try Another Recipe
+                        </button>
+                        <button 
+                            id="back-to-moods-btn" 
+                            class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-3 px-6 rounded-lg transition-all duration-300 border border-gray-300"
+                        >
+                            ← Choose Different Mood
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Error Message -->
+        <div id="error-message" class="hidden max-w-2xl mx-auto">
+            <div class="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
+                <div class="text-red-500 text-4xl mb-4">😔</div>
+                <h3 class="text-lg font-semibold text-red-800 mb-2">Oops! Something went wrong</h3>
+                <p class="text-red-600 mb-4">We couldn't find a recipe for your mood right now.</p>
+                <button id="retry-btn" class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300">
+                    Try Again
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center py-8 text-gray-500">
+        <p>&copy; 2025 Mood Recipe App. Made with ❤️ for food lovers everywhere.</p>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

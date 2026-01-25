@@ -1,0 +1,9 @@
+{
+  "servers": {
+    "calculator": {
+      "command": "python",
+      "args": ["C:\\GitHubPersonal\\AI5-Personal\\MCP\\DemoCalculator\\main.py"],
+      
+    }
+  }
+}
