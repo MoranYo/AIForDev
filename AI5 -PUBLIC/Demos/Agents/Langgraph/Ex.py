@@ -1,5 +1,5 @@
-serpapi = "YOUR_SERPAPI_KEY_HERE"
-openai = "YOUR_OPENAI_API_KEY_HERE"
+serpapi = "b0043711d35b6c5e825905edaac1fc595e22657f7452c224031ef172d52afd4e"
+openai = "YOUR_OPENAI_API_KEY"
 
 from typing import TypedDict, Annotated
 from langchain_core.messages import HumanMessage, AnyMessage, AIMessage

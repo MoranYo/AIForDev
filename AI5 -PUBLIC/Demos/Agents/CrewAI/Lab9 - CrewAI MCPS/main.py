@@ -3,7 +3,7 @@ from crewai_tools import MCPServerAdapter
 from mcp import StdioServerParameters
 
 import os
-os.environ["OPENAI_API_KEY"] = "YOUR_OPENAI_API_KEY_HERE"
+os.environ["OPENAI_API_KEY"] = "YOUR_OPENAI_API_KEY"
 
 server_params = [
     StdioServerParameters(

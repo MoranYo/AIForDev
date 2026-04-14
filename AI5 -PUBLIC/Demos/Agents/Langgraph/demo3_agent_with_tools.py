@@ -5,7 +5,7 @@ from langchain_openai import ChatOpenAI
 from langgraph.graph import StateGraph, START, END, add_messages
 from langchain.tools import tool
 import os
-openai = "YOUR_OPENAI_API_KEY_HERE"
+openai = "YOUR_OPENAI_API_KEY"
 os.environ["OPENAI_API_KEY"] = openai
 
 class State(TypedDict):

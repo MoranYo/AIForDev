@@ -14,7 +14,7 @@ server.listen(5000, () => {
 });
 
 const configuration = new Configuration({
-  apiKey: "YOUR_OPENAI_API_KEY_HERE",
+  apiKey: "YOUR_OPENAI_API_KEY",
 });
 const openai = new OpenAIApi(configuration);
 

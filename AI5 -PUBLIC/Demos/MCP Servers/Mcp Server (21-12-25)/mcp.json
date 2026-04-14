@@ -1,0 +1,45 @@
+{
+  "servers": {
+    "WeatherServer": {
+      "command": "node",
+      "args": ["C:\\Users\\miche\\Desktop\\AI5 -PUBLIC\\Demos\\MCP\\Demo1_WeatherServiceMCP\\index.js"]
+    },
+    "NameOriginServer": {
+      "command": "python",
+      "args": ["C:\\Users\\miche\\Desktop\\AI5 -PUBLIC\\Demos\\MCP\\Demo2_NameOriginMCP\\main.py"]
+    },
+    "ProductsServer": {
+      "command": "node",
+      "args": ["C:\\Users\\miche\\Desktop\\AI5 -PUBLIC\\Demos\\MCP\\Solutions\\Ex1\\index.js"]
+    },
+    "UsersServer": {
+      "command": "python",
+      "args": ["C:\\Users\\miche\\Desktop\\AI5 -PUBLIC\\Demos\\MCP\\Solutions\\Ex2\\main.py"]
+    }, 
+     "MongoDB": {
+      "command": "npx",
+      "args": ["-y", "mongodb-mcp-server@latest"],
+      "env": {
+        "MDB_MCP_CONNECTION_STRING": "mongodb://localhost:27017/AI5"
+      }
+    },
+    "github": {
+        "command": "docker",
+        "args": [
+          "run",
+          "-i",
+          "--rm",
+          "-e",
+          "GITHUB_PERSONAL_ACCESS_TOKEN",
+          "ghcr.io/github/github-mcp-server"
+        ],
+        "env": {
+          "GITHUB_PERSONAL_ACCESS_TOKEN": "YOUR_GITHUB_TOKEN"
+        }
+      },
+      "figma": {
+            "url": "https://mcp.figma.com/mcp",
+            "type": "http"
+        }
+  }
+}

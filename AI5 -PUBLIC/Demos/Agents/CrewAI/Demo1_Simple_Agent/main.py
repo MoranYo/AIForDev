@@ -1,6 +1,6 @@
 from crewai import Crew, Agent, Task
 import os
-os.environ["OPENAI_API_KEY"] = "YOUR_OPENAI_API_KEY_HERE"
+os.environ["OPENAI_API_KEY"] = "YOUR_OPENAI_API_KEY"
 
 marine_agent = Agent(
     role="You are an ocean biologist.",

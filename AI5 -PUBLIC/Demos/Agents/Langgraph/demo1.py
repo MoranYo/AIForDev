@@ -2,7 +2,7 @@ from typing import TypedDict, Annotated
 from langchain_core.messages import HumanMessage, AnyMessage
 from langchain_openai import ChatOpenAI
 from langgraph.graph import StateGraph, START, END, add_messages
-openai = "YOUR_OPENAI_API_KEY_HERE"
+openai = "YOUR_OPENAI_API_KEY"
 
 
 import os

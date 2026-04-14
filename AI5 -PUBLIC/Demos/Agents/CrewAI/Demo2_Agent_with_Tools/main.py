@@ -3,7 +3,7 @@ from crewai.tools import BaseTool, tool
 
 import os
 # from api_keys import openai
-os.environ["OPENAI_API_KEY"] = "YOUR_OPENAI_API_KEY_HERE"
+os.environ["OPENAI_API_KEY"] = "YOUR_OPENAI_API_KEY"
 
 
 ############### Tools
